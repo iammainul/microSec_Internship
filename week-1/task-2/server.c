@@ -15,11 +15,10 @@
 #include <sys/wait.h>
 #include <signal.h>
 
-#define PORT "3490"  // the port users will be connecting to
-
 #define BACKLOG 10	 // how many pending connections queue will hold
 
-void sigchld_handler(int s){
+void sigchld_handler(int s)
+{
 	(void)s; // quiet unused variable warning
 
 	// waitpid() might overwrite errno, so we save and restore it:
@@ -32,7 +31,8 @@ void sigchld_handler(int s){
 
 
 // get sockaddr, IPv4 or IPv6:
-void *get_in_addr(struct sockaddr *sa){
+void *get_in_addr(struct sockaddr *sa)
+{
 	if (sa->sa_family == AF_INET) {
 		return &(((struct sockaddr_in*)sa)->sin_addr);
 	}
@@ -40,7 +40,8 @@ void *get_in_addr(struct sockaddr *sa){
 	return &(((struct sockaddr_in6*)sa)->sin6_addr);
 }
 
-int main(void){
+int main(int argc, char *argv[])
+{
 	int sockfd, new_fd;  // listen on sock_fd, new connection on new_fd
 	struct addrinfo hints, *servinfo, *p;
 	struct sockaddr_storage their_addr; // connector's address information
@@ -55,7 +56,14 @@ int main(void){
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_flags = AI_PASSIVE; // use my IP
 
-	if ((rv = getaddrinfo(NULL, PORT, &hints, &servinfo)) != 0) {
+	if (argc != 3) {
+	    fprintf(stderr,"usage: port missing\n");
+	    exit(1);
+	}
+
+	char PORT = argv[1];
+
+	if ((rv = getaddrinfo(NULL, argv[2], &hints, &servinfo)) != 0) {
 		fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
 		return 1;
 	}
