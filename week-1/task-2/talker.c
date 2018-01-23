@@ -13,7 +13,6 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 
-#define SERVERPORT "4950"	// the port users will be connecting to
 
 int main(int argc, char *argv[])
 {
@@ -21,8 +20,10 @@ int main(int argc, char *argv[])
 	struct addrinfo hints, *servinfo, *p;
 	int rv;
 	int numbytes;
+	char *PORT, *HOSTNAME;
+	char* input = ":";
 
-	if (argc != 3) {
+	if (argc != 4) {
 		fprintf(stderr,"usage: talker hostname message\n");
 		exit(1);
 	}
@@ -31,7 +32,10 @@ int main(int argc, char *argv[])
 	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_DGRAM;
 
-	if ((rv = getaddrinfo(argv[1], SERVERPORT, &hints, &servinfo)) != 0) {
+	HOSTNAME = strtok(argv[2], input);
+	PORT = strtok(NULL, ":");
+
+	if ((rv = getaddrinfo(HOSTNAME, PORT, &hints, &servinfo)) != 0) {
 		fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
 		return 1;
 	}
@@ -52,7 +56,7 @@ int main(int argc, char *argv[])
 		return 2;
 	}
 
-	if ((numbytes = sendto(sockfd, argv[2], strlen(argv[2]), 0,
+	if ((numbytes = sendto(sockfd, argv[3], strlen(argv[3]), 0,
 			 p->ai_addr, p->ai_addrlen)) == -1) {
 		perror("talker: sendto");
 		exit(1);
@@ -60,7 +64,7 @@ int main(int argc, char *argv[])
 
 	freeaddrinfo(servinfo);
 
-	printf("talker: sent %d bytes to %s\n", numbytes, argv[1]);
+	printf("talker: sent %d bytes to %s\n", numbytes, HOSTNAME);
 	close(sockfd);
 
 	return 0;

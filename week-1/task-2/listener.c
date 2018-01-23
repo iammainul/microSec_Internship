@@ -13,9 +13,24 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 
-#define MYPORT "4950"	// the port users will be connecting to
-
 #define MAXBUFLEN 100
+
+
+char *strrev(char *str)
+{
+    int i = strlen(str) - 1, j = 0;
+
+    char ch;
+    while (i > j)
+    {
+        ch = str[i];
+        str[i] = str[j];
+        str[j] = ch;
+        i--;
+        j++;
+    }
+    return str;
+}
 
 // get sockaddr, IPv4 or IPv6:
 void *get_in_addr(struct sockaddr *sa)
@@ -27,7 +42,7 @@ void *get_in_addr(struct sockaddr *sa)
 	return &(((struct sockaddr_in6*)sa)->sin6_addr);
 }
 
-int main(void)
+int main(int argc, char *argv[])
 {
 	int sockfd;
 	struct addrinfo hints, *servinfo, *p;
@@ -38,12 +53,14 @@ int main(void)
 	socklen_t addr_len;
 	char s[INET6_ADDRSTRLEN];
 
+	char *PORT = argv[2];
+
 	memset(&hints, 0, sizeof hints);
 	hints.ai_family = AF_UNSPEC; // set to AF_INET to force IPv4
 	hints.ai_socktype = SOCK_DGRAM;
 	hints.ai_flags = AI_PASSIVE; // use my IP
 
-	if ((rv = getaddrinfo(NULL, MYPORT, &hints, &servinfo)) != 0) {
+	if ((rv = getaddrinfo(NULL, PORT, &hints, &servinfo)) != 0) {
 		fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
 		return 1;
 	}
@@ -87,7 +104,7 @@ int main(void)
 			s, sizeof s));
 	printf("listener: packet is %d bytes long\n", numbytes);
 	buf[numbytes] = '\0';
-	printf("listener: packet contains \"%s\"\n", buf);
+	printf("listener: packet contains \"%s\"\n", strrev(buf));
 
 	close(sockfd);
 

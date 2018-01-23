@@ -17,6 +17,25 @@
 
 #define BACKLOG 10	 // how many pending connections queue will hold
 
+#define MAXDATASIZE 1000
+
+char *strrev(char *str)
+{
+    int i = strlen(str) - 1, j = 0;
+
+    char ch;
+    while (i > j)
+    {
+        ch = str[i];
+        str[i] = str[j];
+        str[j] = ch;
+        i--;
+        j++;
+    }
+    return str;
+}
+
+
 void sigchld_handler(int s)
 {
 	(void)s; // quiet unused variable warning
@@ -42,13 +61,13 @@ void *get_in_addr(struct sockaddr *sa)
 
 int main(int argc, char *argv[])
 {
-	int sockfd, new_fd;  // listen on sock_fd, new connection on new_fd
+	int sockfd, new_fd, numbytes;  // listen on sock_fd, new connection on new_fd
 	struct addrinfo hints, *servinfo, *p;
 	struct sockaddr_storage their_addr; // connector's address information
 	socklen_t sin_size;
 	struct sigaction sa;
 	int yes=1;
-	char s[INET6_ADDRSTRLEN];
+	char s[INET6_ADDRSTRLEN], buf[MAXDATASIZE];
 	int rv;
 
 	memset(&hints, 0, sizeof hints);
@@ -128,8 +147,18 @@ int main(int argc, char *argv[])
 
 		if (!fork()) { // this is the child process
 			close(sockfd); // child doesn't need the listener
-			if (send(new_fd, "Hello, world!", 13, 0) == -1)
+			if (send(new_fd, "theBEAST-KL", 13, 0) == -1)
 				perror("send");
+
+			if ((numbytes = recv(new_fd, buf, MAXDATASIZE-1, 0)) == -1) {
+	    	perror("recv");
+	    	exit(1);
+			}
+
+			buf[numbytes] = '\0';
+
+			printf("client: received '%s'\n", strrev(buf));
+			
 			close(new_fd);
 			exit(0);
 		}
