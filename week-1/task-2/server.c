@@ -80,9 +80,9 @@ int main(int argc, char *argv[])
 	    exit(1);
 	}
 
-	char *PORT = argv[1];
+	char *PORT = argv[2];
 
-	if ((rv = getaddrinfo(NULL, argv[2]	, &hints, &servinfo)) != 0) {
+	if ((rv = getaddrinfo(NULL, PORT	, &hints, &servinfo)) != 0) {
 		fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
 		return 1;
 	}
