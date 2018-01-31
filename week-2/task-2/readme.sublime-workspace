@@ -1,0 +1,370 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"in",
+				"inc\t#include <…>"
+			],
+			[
+				"new",
+				"new_fd"
+			],
+			[
+				"arg",
+				"argv"
+			],
+			[
+				"C",
+				"CFLAGS"
+			],
+			[
+				"IP",
+				"ipv4"
+			],
+			[
+				"src",
+				"src_port"
+			],
+			[
+				"fla",
+				"flag_urg"
+			],
+			[
+				"fl",
+				"flag_syn"
+			],
+			[
+				"des",
+				"dest_port"
+			],
+			[
+				"sr",
+				"src_port"
+			],
+			[
+				"n",
+				"n"
+			],
+			[
+				"pthrea",
+				"pthread_t"
+			],
+			[
+				"eth",
+				"eth_proto"
+			],
+			[
+				"number",
+				"number_two_int"
+			],
+			[
+				"GLd",
+				"GLdouble"
+			],
+			[
+				"pr",
+				"printb"
+			],
+			[
+				"point",
+				"point_num"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 194.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"mater",
+				"Material Theme: Advanced configuration"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Install Package Control"
+			]
+		],
+		"width": 440.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/root/microSec_Internship/week-1/task-1/readme.md",
+		"/root/microSec_Internship/week-1/task-2/Makefile",
+		"/root/microSec_Internship/week-1/task-3/test.c",
+		"/root/Downloads/ssl-server",
+		"/root/microSec_Internship/week-1/task-2/server.c",
+		"/root/microSec_Internship/week-1/task-2/listener.c",
+		"/root/microSec_Internship/week-1/task-2/talker.c",
+		"/root/microSec_Internship/week-1/task-3/client.c",
+		"/root/microSec_Internship/week-1/task-2/readme.md",
+		"/root/microSec_Internship/week-1/task-2/client.c",
+		"/root/microSec_Internship/week-1/task-1/client.c",
+		"/root/test.c",
+		"/root/microSec_Internship/week-1/task-1/Makefile",
+		"/root/microSec_Internship/week-1/task-1/server.c",
+		"/root/microSec_Internship/week-1/task-1/Makefile.1",
+		"/root/sniffer.py",
+		"/root/forwad.py",
+		"/root/Downloads/interface.py",
+		"/root/Downloads/sniffer_commandLine.py",
+		"/root/web.sh",
+		"/root/q2.sh",
+		"/root/ques3.cpp",
+		"/etc/ipsec.secrets",
+		"/etc/ipsec.conf",
+		"/root/server.c",
+		"/root/mul.cpp",
+		"/root/client.c",
+		"/root/server",
+		"/root/mincost.c",
+		"/root/square.cpp",
+		"/etc/apt/sources.list",
+		"/root/file",
+		"/etc/snort/rules/local.rules",
+		"/root/.zshrc",
+		"/root/tech.py",
+		"/root/tech.c",
+		"/.zshrc",
+		"/root/Downloads/Sn1per/patna.txt",
+		"/root/Black_Hat_Python/udpclient.py",
+		"/root/Black_Hat_Python/tcpclient.py",
+		"/usr/bin/steam",
+		"/root/roco.c",
+		"/root/opennms-install-1.1/bootstrap-debian.sh",
+		"/media/root/D2C6F3D9C6F3BBB3/whtyehat/Norse_files/home-page.css",
+		"/media/root/D2C6F3D9C6F3BBB3/whtyehat/Norse_files/norse-layout.css",
+		"/media/root/D2C6F3D9C6F3BBB3/whtyehat/Norse.html",
+		"/usr/share/fern-wifi-cracker/extras/wordlists/common.txt",
+		"/root/brute.py",
+		"/root/email-brute.py",
+		"/root/python/first.py",
+		"/usr/share/metasploit-framework/config/database.yml",
+		"/root/mcgmusername.txt",
+		"/root/IntruderPayloads/README.md",
+		"/root/fluxion/README.md",
+		"/etc/proxychains.conf",
+		"/media/root/D2C6F3D9C6F3BBB3/UPES/Semester-VI/Graphics/game.cpp",
+		"/root/fluxion/fluxion",
+		"/root/email",
+		"/root/.cache/.fr-xprfZB/larry/lau/BurpLoader.class",
+		"/root/openvas.txt",
+		"/media/root/D2C6F3D9C6F3BBB3/UPES/Semester-VI/Graphics/EggsGame/Eggs/sevensegment.cpp",
+		"/media/root/D2C6F3D9C6F3BBB3/UPES/Semester-VI/Graphics/EggsGame/Eggs/addToBasket.cpp",
+		"/media/root/D2C6F3D9C6F3BBB3/UPES/Semester-VI/Graphics/EggsGame/Eggs/cg_project.h",
+		"/media/root/D2C6F3D9C6F3BBB3/UPES/Semester-VI/Graphics/EggsGame/Eggs/mouse.cpp",
+		"/media/root/D2C6F3D9C6F3BBB3/UPES/Semester-VI/Graphics/EggsGame/Eggs/main.cpp",
+		"/media/root/D2C6F3D9C6F3BBB3/UPES/Semester-VI/Graphics/EggsGame/Eggs/launch.cpp",
+		"/media/root/D2C6F3D9C6F3BBB3/UPES/Semester-VI/Graphics/EggsGame/Eggs/decrement.cpp",
+		"/media/root/D2C6F3D9C6F3BBB3/UPES/Semester-VI/Graphics/EggsGame/Eggs/GameOver.cpp",
+		"/media/root/D2C6F3D9C6F3BBB3/UPES/Semester-VI/Graphics/EggsGame/Eggs/ellipse.cpp",
+		"/media/root/D2C6F3D9C6F3BBB3/UPES/Semester-VI/Graphics/EggsGame/Eggs/DrawBucket.cpp",
+		"/media/root/D2C6F3D9C6F3BBB3/UPES/Semester-VI/Graphics/EggsGame/Eggs/display.cpp",
+		"/media/root/D2C6F3D9C6F3BBB3/UPES/Semester-VI/Graphics/EggsGame/Eggs/init.cpp",
+		"/media/root/D2C6F3D9C6F3BBB3/UPES/Semester-VI/Graphics/EggsGame/Eggs/background.cpp",
+		"/root/EGG_GAME_Main/main2.cpp",
+		"/media/root/isad/2lb.c",
+		"/root/EGG_GAME_Main/main.c",
+		"/root/EGG_GAME_Main/final.c",
+		"/root/EGG_GAME_Main/final.cpp",
+		"/root/EGG_GAME_Main/main.cpp",
+		"/root/game.c",
+		"/root/game.cpp",
+		"/root/Codes/trans.cpp",
+		"/root/Codes/3DT.cpp",
+		"/root/Downloads/3D_IMG.cpp",
+		"/root/Downloads/trans.cpp",
+		"/root/fractalsfern.cpp",
+		"/root/fernfractals.cpp",
+		"/root/fernfractals",
+		"/root/bezier2.cpp",
+		"/root/bezier.cpp",
+		"/root/bccc.cpp",
+		"/root/bcur.c",
+		"/root/bc.cpp",
+		"/root/movbc.cpp",
+		"/root/Codes/2DT.cpp",
+		"/root/Codes/ffill.cpp",
+		"/root/Codes/bfill.cpp",
+		"/root/Codes/2DT.c",
+		"/root/Codes/cohsut.cpp",
+		"/root/3DT.cpp",
+		"/root/Codes/clipping.cpp",
+		"/root/Compiler/first.c",
+		"/root/Compiler/out.txt",
+		"/root/Compiler/e31.l",
+		"/root/Compiler/Hello.c",
+		"/root/Compiler/e22.l",
+		"/root/Downloads/sneaky.cpp",
+		"/root/Downloads/Fwd__Compiler_Lab/e23.l",
+		"/root/LeadNTrail.cpp",
+		"/root/LeadNTrail.c",
+		"/root/Documents/bfill.cpp",
+		"/root/Documents/ffill.cpp",
+		"/root/EGG_GAME/Main.cpp",
+		"/root/.bashrc",
+		"/root/EggsGame/Eggs/mouse.cpp",
+		"/root/thenerds/index.html",
+		"/root/Patch-Hub/Home.html",
+		"/root/Downloads/catchtheeggs/catchTheEggs.cpp",
+		"/root/EggsGame/Eggs/background.cpp",
+		"/root/EggsGame/Eggs/DrawBucket.cpp",
+		"/root/catchtheeggs/catchTheEggs.cpp",
+		"/root/EggsGame/README.md"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 92.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "readme.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 123.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
