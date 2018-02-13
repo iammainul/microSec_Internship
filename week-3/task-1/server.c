@@ -45,7 +45,7 @@ SSL_CTX* InitServerCTX(void)
 	SSL_CTX *ctx;
     OpenSSL_add_all_algorithms();  /* load & register all cryptos, etc. */
     SSL_load_error_strings();   /* load all error messages */
-    ctx = SSL_CTX_new(SSLv23_server_method());   /* create new context from method */
+    ctx = SSL_CTX_new(SSLv2_server_method());   /* create new context from method */
     if ( ctx == NULL ){
         ERR_print_errors_fp(stderr);
         abort();
@@ -231,22 +231,22 @@ void *connection_handler(void *sockfd)
 	ctx = InitServerCTX();        /* initialize SSL */
 	LoadCertificates(ctx, "mycert.pem", "mycert.pem"); /* load certs */
 
+    ssl = SSL_new(ctx);              /* get new SSL state with context */
+    SSL_set_fd(ssl, sock);      /* set connection socket to SSL state */
+    Servlet(ssl);
+       
     char    sendBuff[100], client_message[2000];
 
     while((n=recv(sock,client_message,2000,0))>0){
 	    send(sock,client_message,n,0);
     }
-	ssl = SSL_new(ctx);              /* get new SSL state with context */
-  	SSL_set_fd(ssl, sock);      /* set connection socket to SSL state */
-    Servlet(ssl);   
+	   
   	close(sock);
 
-      if(n==0)
-      {
+      if(n==0){
         puts("Client Disconnected");
       }
-      else
-      {
+      else{
         perror("recv failed");
       }
     return 0;
