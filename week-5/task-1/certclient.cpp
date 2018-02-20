@@ -86,10 +86,10 @@ X509 * generate_x509(EVP_PKEY * pkey)
 bool write_to_disk(EVP_PKEY * pkey, X509 * x509)
 {
     /* Open the PEM file for writing the key to disk. */
-    FILE * pkey_file = fopen("key.pem", "wb");
+    FILE * pkey_file = fopen("Clientkey.pem", "wb");
     if(!pkey_file)
     {
-        std::cerr << "Unable to open \"key.pem\" for writing." << std::endl;
+        std::cerr << "Unable to open \"Clientkey.pem\" for writing." << std::endl;
         return false;
     }
     
@@ -104,10 +104,10 @@ bool write_to_disk(EVP_PKEY * pkey, X509 * x509)
     }
     
     /* Open the PEM file for writing the certificate to disk. */
-    FILE * x509_file = fopen("cert.pem", "wb");
+    FILE * x509_file = fopen("Clientcert.pem", "wb");
     if(!x509_file)
     {
-        std::cerr << "Unable to open \"cert.pem\" for writing." << std::endl;
+        std::cerr << "Unable to open \"Clientcert.pem\" for writing." << std::endl;
         return false;
     }
     
