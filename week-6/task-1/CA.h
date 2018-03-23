@@ -7,7 +7,9 @@
 #include <string.h>
 #include <assert.h>
 #include <time.h>
+#include <stdint.h>
 
+#include <openssl/pem.h>
 #include <openssl/evp.h>
 #include <openssl/bio.h>
 #include <openssl/err.h>
@@ -17,20 +19,23 @@
 #include <openssl/sha.h>
 
 
+#define UNUSED(x) ((void)x)
 
 typedef unsigned char byte;
 const char hn[] = "SHA256";
 #define BUFF 100
-#define ECCTYPE    "prime256v1"
+
+
 
 
 int sign_it(const byte* msg, size_t mlen, byte** sig, size_t* slen, EVP_PKEY* pkey)
 {
     /* Returned to caller */
     int result = -1;
+
     
     if(!msg || !mlen || !sig || !pkey) {
-        assert(0);
+        //assert(0);
         return -1;
     }
     
@@ -45,35 +50,35 @@ int sign_it(const byte* msg, size_t mlen, byte** sig, size_t* slen, EVP_PKEY* pk
     do
     {
         ctx = EVP_MD_CTX_create();
-        assert(ctx != NULL);
+        //assert(ctx != NULL);
         if(ctx == NULL) {
             printf("EVP_MD_CTX_create failed, error 0x%lx\n", ERR_get_error());
             break; /* failed */
         }
         
         const EVP_MD* md = EVP_get_digestbyname(hn);
-        assert(md != NULL);
+        //assert(md != NULL);
         if(md == NULL) {
             printf("EVP_get_digestbyname failed, error 0x%lx\n", ERR_get_error());
             break; /* failed */
         }
         
         int rc = EVP_DigestInit_ex(ctx, md, NULL);
-        assert(rc == 1);
+        //assert(rc == 1);
         if(rc != 1) {
             printf("EVP_DigestInit_ex failed, error 0x%lx\n", ERR_get_error());
             break; /* failed */
         }
         
         rc = EVP_DigestSignInit(ctx, NULL, md, NULL, pkey);
-        assert(rc == 1);
+        //assert(rc == 1);
         if(rc != 1) {
             printf("EVP_DigestSignInit failed, error 0x%lx\n", ERR_get_error());
             break; /* failed */
         }
         
         rc = EVP_DigestSignUpdate(ctx, msg, mlen);
-        assert(rc == 1);
+        //assert(rc == 1);
         if(rc != 1) {
             printf("EVP_DigestSignUpdate failed, error 0x%lx\n", ERR_get_error());
             break; /* failed */
@@ -81,20 +86,20 @@ int sign_it(const byte* msg, size_t mlen, byte** sig, size_t* slen, EVP_PKEY* pk
         
         size_t req = 0;
         rc = EVP_DigestSignFinal(ctx, NULL, &req);
-        assert(rc == 1);
+        //assert(rc == 1);
         if(rc != 1) {
             printf("EVP_DigestSignFinal failed (1), error 0x%lx\n", ERR_get_error());
             break; /* failed */
         }
         
-        assert(req > 0);
+        //assert(req > 0);
         if(!(req > 0)) {
             printf("EVP_DigestSignFinal failed (2), error 0x%lx\n", ERR_get_error());
             break; /* failed */
         }
         
-        *sig = OPENSSL_malloc(req);
-        assert(*sig != NULL);
+        *sig = (byte*)OPENSSL_malloc(req);
+        //assert(*sig != NULL);
         if(*sig == NULL) {
             printf("OPENSSL_malloc failed, error 0x%lx\n", ERR_get_error());
             break; /* failed */
@@ -102,13 +107,13 @@ int sign_it(const byte* msg, size_t mlen, byte** sig, size_t* slen, EVP_PKEY* pk
         
         *slen = req;
         rc = EVP_DigestSignFinal(ctx, *sig, slen);
-        assert(rc == 1);
+        //assert(rc == 1);
         if(rc != 1) {
             printf("EVP_DigestSignFinal failed (3), return code %d, error 0x%lx\n", rc, ERR_get_error());
             break; /* failed */
         }
         
-        assert(req == *slen);
+        //assert(req == *slen);
         if(rc != 1) {
             printf("EVP_DigestSignFinal failed, mismatched signature sizes %ld, %ld", req, *slen);
             break; /* failed */
@@ -132,7 +137,7 @@ int verify_it(const byte* msg, size_t mlen, const byte* sig, size_t slen, EVP_PK
     int result = -1;
     
     if(!msg || !mlen || !sig || !slen || !pkey) {
-        assert(0);
+        //assert(0);
         return -1;
     }
     
@@ -141,35 +146,35 @@ int verify_it(const byte* msg, size_t mlen, const byte* sig, size_t slen, EVP_PK
     do
     {
         ctx = EVP_MD_CTX_create();
-        assert(ctx != NULL);
+        //assert(ctx != NULL);
         if(ctx == NULL) {
             printf("EVP_MD_CTX_create failed, error 0x%lx\n", ERR_get_error());
             break; /* failed */
         }
         
         const EVP_MD* md = EVP_get_digestbyname(hn);
-        assert(md != NULL);
+        //assert(md != NULL);
         if(md == NULL) {
             printf("EVP_get_digestbyname failed, error 0x%lx\n", ERR_get_error());
             break; /* failed */
         }
         
         int rc = EVP_DigestInit_ex(ctx, md, NULL);
-        assert(rc == 1);
+        //assert(rc == 1);
         if(rc != 1) {
             printf("EVP_DigestInit_ex failed, error 0x%lx\n", ERR_get_error());
             break; /* failed */
         }
         
         rc = EVP_DigestVerifyInit(ctx, NULL, md, NULL, pkey);
-        assert(rc == 1);
+        //assert(rc == 1);
         if(rc != 1) {
             printf("EVP_DigestVerifyInit failed, error 0x%lx\n", ERR_get_error());
             break; /* failed */
         }
         
         rc = EVP_DigestVerifyUpdate(ctx, msg, mlen);
-        assert(rc == 1);
+        //assert(rc == 1);
         if(rc != 1) {
             printf("EVP_DigestVerifyUpdate failed, error 0x%lx\n", ERR_get_error());
             break; /* failed */
@@ -179,7 +184,7 @@ int verify_it(const byte* msg, size_t mlen, const byte* sig, size_t slen, EVP_PK
         ERR_clear_error();
         
         rc = EVP_DigestVerifyFinal(ctx, sig, slen);
-        assert(rc == 1);
+        //assert(rc == 1);
         if(rc != 1) {
             printf("EVP_DigestVerifyFinal failed, error 0x%lx\n", ERR_get_error());
             break; /* failed */
@@ -196,6 +201,19 @@ int verify_it(const byte* msg, size_t mlen, const byte* sig, size_t slen, EVP_PK
     
     return !!result;
 
+}
+
+void stcat (unsigned char *str1, unsigned char *str2)
+{
+    int i = 0,len = 0;
+    while(*(str1+len)!= '\0')
+    len++;
+    while(*(str2+i)!= '\0'){
+        *(str1+len) = *(str2+i);
+        i++;
+        len++;
+    }
+    *(str1+len) = '\0';
 }
 
 

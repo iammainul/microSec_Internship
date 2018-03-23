@@ -1,13 +1,10 @@
-
 #include "CA.h"
-
-
 
 typedef struct CSRToBeSigned{
     unsigned int deviceID;
     unsigned int orgID;
-    unsigned char curveID;
-    unsigned char *hashID;
+    char *curveID;
+    char *hashID;
     unsigned int pubKLen;
     EVP_PKEY *pubK ;
 } CSR;
@@ -15,8 +12,8 @@ typedef struct CSRToBeSigned{
 typedef struct MiniCertSR{
     unsigned int deviceID;
     unsigned int orgID;
-    unsigned char curveID;
-    unsigned char *hashID;
+    char *curveID;
+    char *hashID;
     unsigned int pubKLen;
     EVP_PKEY *pubK ;
     size_t sLen;
@@ -26,8 +23,8 @@ typedef struct MiniCertSR{
 typedef struct CA{
     unsigned int deviceID;
     unsigned int orgID;
-    unsigned char curveID;
-    unsigned char *hashID;
+    char *curveID;
+    char *hashID;
     unsigned int pubKLen;
     EVP_PKEY *pubK ;
     unsigned int certSNo;
@@ -72,41 +69,56 @@ int main(){
     CSR csr;
     MCSR mcsr;
     CA ca;
+    FILE *fp, *fp1;
     memset(&csr, 0, sizeof(csr));
     memset(&mcsr, 0 , sizeof(mcsr));
     memset(&ca, 0 , sizeof(ca));
-    EVP_PKEY *PKey   = NULL;
-    EVP_PKEY *pubK = NULL;
-    int eccgrp;
+    EVP_PKEY *PUBKey   = NULL;
+    EVP_PKEY **P_PUBKEY = NULL;
+    EVP_PKEY *PRKEY = NULL;
+    EVP_PKEY **P_PRKEY = NULL;
     unsigned int pubKLen;
-    unsigned char csrbuff[BUFF] = {};
     int ret;
     size_t sLen = 0;
-    byte *sig = NULL;
-    BIO  *outbio = NULL;
+    byte* sig = NULL;
+    char hn[] = "SHA256";
+    char ecctype[] = "SEPC256K1";
+    unsigned int ar[3];
 
 
-    //Generating Keys
-    eccgrp = OBJ_txt2nid(ECCTYPE);
+
+    //Reading Keys
+    fp = fopen("mypubkey.pem", "r");
+
+    PUBKey =  PEM_read_PUBKEY(fp, P_PUBKEY, NULL, NULL);
+
+    fclose(fp);
     
-    pubK = EC_KEY_new_by_curve_name(eccgrp);
-    if (! (EC_KEY_generate_key(pubK)))
-        BIO_printf(outbio, "Error generating the ECC key.");
-    
-    pubKLen = EVP_PKEY_bits(pubK);
+    fp = fopen("mypubkey.pem", "r");
 
-    PKey=EVP_PKEY_new();
-    if (!EVP_PKEY_assign_EC_KEY(PKey,pubK))
-        BIO_printf(outbio, "Error assigning ECC key to EVP_PKEY structure.");
+    PUBKey =  PEM_read_PUBKEY(fp, P_PUBKEY, NULL, NULL);
+
+    fclose(fp);
+
+    fp1 = fopen("secp256k1-key.pem", "r");
+
+    PRKEY =  PEM_read_PrivateKey(fp, P_PRKEY, NULL, NULL);
+
+    fclose(fp1);
+
+    pubKLen = EVP_PKEY_bits(PUBKey);
+
+
+
 
     
     //Filling up the CSRToBeSigned Structure
     csr.deviceID = (uint32_t)rand();
     csr.orgID = (uint32_t)rand();
-    csr.curveID = ECCTYPE;
+    csr.curveID = ecctype;
     csr.hashID = hn;
     csr.pubKLen = pubKLen;
-    csr.pubK = pubK;
+    csr.pubK = PUBKey;
 
     ret = WriteCSRToFile(csr);
 
@@ -123,17 +135,27 @@ int main(){
     mcsr.pubK = csr.pubK;
     mcsr.pubKLen = csr.pubKLen;
 
-    const byte *buff;
-    memset(buff, '0', sizeof(buff));
+    
+    ar[0] = mcsr.deviceID;
+    ar[1] = mcsr.orgID;
+    ar[2] = mcsr.pubKLen;
+    
+    unsigned char s[3] = {3};
+    memcpy(s, (char*)&ar, sizeof(ar));
 
-    strcat(mcsr.hashID, mcsr.pubKLen);
-    strcat(mcsr.curveID, mcsr.hashID);
-    strcat(mcsr.orgID, mcsr.curveID);
-    strcat(mcsr.deviceID, mcsr.orgID);
-    strcat (buff, mcsr.deviceID);
+    unsigned char *m = (unsigned char*)mcsr.curveID;
+    unsigned char *n = (unsigned char*)mcsr.hashID;
+
+    byte *buff = NULL;
+    stcat(m, n);
+    stcat(s, m);
+
+    buff = s;
+
+
 
     //creating the signature
-    ret = sign_it(buff, sizeof(buff), &sig, &sLen, PKey);
+    ret = sign_it(buff, sizeof(buff), &sig, &sLen, PRKEY);
 
     assert(ret == 0);
     if(ret == 0){
@@ -160,7 +182,7 @@ int main(){
     }
 
     //verifying the signature
-    ret = verify_it(buff, sizeof(buff), sig, sLen, pubK);
+    ret = verify_it(buff, sizeof(buff), sig, sLen, PUBKey);
 
     if(ret == 0) {
         printf("Verified signature\n");
@@ -168,7 +190,8 @@ int main(){
         printf("Failed to verify signature, return code %d\n", ret);
     }
     
-    time_t validF, validFor;
+    time_t validF;
+    time_t validFor;
     validFor = (validF + 31536000);
     
     ca.certSNo = (uint32_t)rand();
@@ -190,13 +213,11 @@ int main(){
 
     if(sig)
         OPENSSL_free(sig);
+    if(PUBKey)
+        EVP_PKEY_free(PUBKey);
     
-    if(pubK)
-        EVP_PKEY_free(pubK);
-    
-    if(PKey)
-        EVP_PKEY_free(PKey);
+    if(PRKEY)
+        EVP_PKEY_free(PRKEY);
     
     return 0;
 }
-
