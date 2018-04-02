@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package CAA;
+
+message CA{
+	int32 deviceID = 1;
+	int32 orgID = 2;
+	string curveID = 3;
+    string hashID = 4;
+    int32 pubKLen = 5;
+    int32 sigL = 6;
+    byte sig = 7;
+    int32 certSNO = 8;
+    int32 caID = 9;
+    int32 validF = 10;
+    int32 validFrom = 11;
+}	

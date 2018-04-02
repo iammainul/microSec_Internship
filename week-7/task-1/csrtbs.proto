@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package CA;
+
+message CSTBS{
+	int32 deviceID = 1;
+	int32 orgID = 2;
+	string curveID = 3;
+    string hashID = 4;
+    int32 pubKLen = 5;
+}	
