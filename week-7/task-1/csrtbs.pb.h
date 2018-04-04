@@ -29,18 +29,20 @@
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 
-namespace CA {
+namespace CSV {
 
 // Internal implementation detail -- do not call these.
 void protobuf_AddDesc_csrtbs_2eproto();
 void protobuf_AssignDesc_csrtbs_2eproto();
 void protobuf_ShutdownFile_csrtbs_2eproto();
 
+class CA;
 class CSTBS;
+class MCSR;
 
 // ===================================================================
 
-class CSTBS : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CA.CSTBS) */ {
+class CSTBS : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CSV.CSTBS) */ {
  public:
   CSTBS();
   virtual ~CSTBS();
@@ -140,7 +142,7 @@ class CSTBS : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
   ::google::protobuf::int32 pubklen() const;
   void set_pubklen(::google::protobuf::int32 value);
 
-  // @@protoc_insertion_point(class_scope:CA.CSTBS)
+  // @@protoc_insertion_point(class_scope:CSV.CSTBS)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
@@ -158,6 +160,293 @@ class CSTBS : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
   void InitAsDefaultInstance();
   static CSTBS* default_instance_;
 };
+// -------------------------------------------------------------------
+
+class MCSR : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CSV.MCSR) */ {
+ public:
+  MCSR();
+  virtual ~MCSR();
+
+  MCSR(const MCSR& from);
+
+  inline MCSR& operator=(const MCSR& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MCSR& default_instance();
+
+  void Swap(MCSR* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MCSR* New() const { return New(NULL); }
+
+  MCSR* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const MCSR& from);
+  void MergeFrom(const MCSR& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(MCSR* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 deviceID = 1;
+  void clear_deviceid();
+  static const int kDeviceIDFieldNumber = 1;
+  ::google::protobuf::int32 deviceid() const;
+  void set_deviceid(::google::protobuf::int32 value);
+
+  // optional int32 orgID = 2;
+  void clear_orgid();
+  static const int kOrgIDFieldNumber = 2;
+  ::google::protobuf::int32 orgid() const;
+  void set_orgid(::google::protobuf::int32 value);
+
+  // optional string curveID = 3;
+  void clear_curveid();
+  static const int kCurveIDFieldNumber = 3;
+  const ::std::string& curveid() const;
+  void set_curveid(const ::std::string& value);
+  void set_curveid(const char* value);
+  void set_curveid(const char* value, size_t size);
+  ::std::string* mutable_curveid();
+  ::std::string* release_curveid();
+  void set_allocated_curveid(::std::string* curveid);
+
+  // optional string hashID = 4;
+  void clear_hashid();
+  static const int kHashIDFieldNumber = 4;
+  const ::std::string& hashid() const;
+  void set_hashid(const ::std::string& value);
+  void set_hashid(const char* value);
+  void set_hashid(const char* value, size_t size);
+  ::std::string* mutable_hashid();
+  ::std::string* release_hashid();
+  void set_allocated_hashid(::std::string* hashid);
+
+  // optional int32 pubKLen = 5;
+  void clear_pubklen();
+  static const int kPubKLenFieldNumber = 5;
+  ::google::protobuf::int32 pubklen() const;
+  void set_pubklen(::google::protobuf::int32 value);
+
+  // optional int32 sigL = 6;
+  void clear_sigl();
+  static const int kSigLFieldNumber = 6;
+  ::google::protobuf::int32 sigl() const;
+  void set_sigl(::google::protobuf::int32 value);
+
+  // optional bytes sig = 7;
+  void clear_sig();
+  static const int kSigFieldNumber = 7;
+  const ::std::string& sig() const;
+  void set_sig(const ::std::string& value);
+  void set_sig(const char* value);
+  void set_sig(const void* value, size_t size);
+  ::std::string* mutable_sig();
+  ::std::string* release_sig();
+  void set_allocated_sig(::std::string* sig);
+
+  // @@protoc_insertion_point(class_scope:CSV.MCSR)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::int32 deviceid_;
+  ::google::protobuf::int32 orgid_;
+  ::google::protobuf::internal::ArenaStringPtr curveid_;
+  ::google::protobuf::internal::ArenaStringPtr hashid_;
+  ::google::protobuf::int32 pubklen_;
+  ::google::protobuf::int32 sigl_;
+  ::google::protobuf::internal::ArenaStringPtr sig_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_csrtbs_2eproto();
+  friend void protobuf_AssignDesc_csrtbs_2eproto();
+  friend void protobuf_ShutdownFile_csrtbs_2eproto();
+
+  void InitAsDefaultInstance();
+  static MCSR* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class CA : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CSV.CA) */ {
+ public:
+  CA();
+  virtual ~CA();
+
+  CA(const CA& from);
+
+  inline CA& operator=(const CA& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CA& default_instance();
+
+  void Swap(CA* other);
+
+  // implements Message ----------------------------------------------
+
+  inline CA* New() const { return New(NULL); }
+
+  CA* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const CA& from);
+  void MergeFrom(const CA& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(CA* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 deviceID = 1;
+  void clear_deviceid();
+  static const int kDeviceIDFieldNumber = 1;
+  ::google::protobuf::int32 deviceid() const;
+  void set_deviceid(::google::protobuf::int32 value);
+
+  // optional int32 orgID = 2;
+  void clear_orgid();
+  static const int kOrgIDFieldNumber = 2;
+  ::google::protobuf::int32 orgid() const;
+  void set_orgid(::google::protobuf::int32 value);
+
+  // optional string curveID = 3;
+  void clear_curveid();
+  static const int kCurveIDFieldNumber = 3;
+  const ::std::string& curveid() const;
+  void set_curveid(const ::std::string& value);
+  void set_curveid(const char* value);
+  void set_curveid(const char* value, size_t size);
+  ::std::string* mutable_curveid();
+  ::std::string* release_curveid();
+  void set_allocated_curveid(::std::string* curveid);
+
+  // optional string hashID = 4;
+  void clear_hashid();
+  static const int kHashIDFieldNumber = 4;
+  const ::std::string& hashid() const;
+  void set_hashid(const ::std::string& value);
+  void set_hashid(const char* value);
+  void set_hashid(const char* value, size_t size);
+  ::std::string* mutable_hashid();
+  ::std::string* release_hashid();
+  void set_allocated_hashid(::std::string* hashid);
+
+  // optional int32 pubKLen = 5;
+  void clear_pubklen();
+  static const int kPubKLenFieldNumber = 5;
+  ::google::protobuf::int32 pubklen() const;
+  void set_pubklen(::google::protobuf::int32 value);
+
+  // optional int32 certSNO = 6;
+  void clear_certsno();
+  static const int kCertSNOFieldNumber = 6;
+  ::google::protobuf::int32 certsno() const;
+  void set_certsno(::google::protobuf::int32 value);
+
+  // optional int32 caID = 7;
+  void clear_caid();
+  static const int kCaIDFieldNumber = 7;
+  ::google::protobuf::int32 caid() const;
+  void set_caid(::google::protobuf::int32 value);
+
+  // optional int32 validF = 8;
+  void clear_validf();
+  static const int kValidFFieldNumber = 8;
+  ::google::protobuf::int32 validf() const;
+  void set_validf(::google::protobuf::int32 value);
+
+  // optional int32 validFor = 9;
+  void clear_validfor();
+  static const int kValidForFieldNumber = 9;
+  ::google::protobuf::int32 validfor() const;
+  void set_validfor(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:CSV.CA)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::int32 deviceid_;
+  ::google::protobuf::int32 orgid_;
+  ::google::protobuf::internal::ArenaStringPtr curveid_;
+  ::google::protobuf::internal::ArenaStringPtr hashid_;
+  ::google::protobuf::int32 pubklen_;
+  ::google::protobuf::int32 certsno_;
+  ::google::protobuf::int32 caid_;
+  ::google::protobuf::int32 validf_;
+  ::google::protobuf::int32 validfor_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_csrtbs_2eproto();
+  friend void protobuf_AssignDesc_csrtbs_2eproto();
+  friend void protobuf_ShutdownFile_csrtbs_2eproto();
+
+  void InitAsDefaultInstance();
+  static CA* default_instance_;
+};
 // ===================================================================
 
 
@@ -171,13 +460,13 @@ inline void CSTBS::clear_deviceid() {
   deviceid_ = 0;
 }
 inline ::google::protobuf::int32 CSTBS::deviceid() const {
-  // @@protoc_insertion_point(field_get:CA.CSTBS.deviceID)
+  // @@protoc_insertion_point(field_get:CSV.CSTBS.deviceID)
   return deviceid_;
 }
 inline void CSTBS::set_deviceid(::google::protobuf::int32 value) {
   
   deviceid_ = value;
-  // @@protoc_insertion_point(field_set:CA.CSTBS.deviceID)
+  // @@protoc_insertion_point(field_set:CSV.CSTBS.deviceID)
 }
 
 // optional int32 orgID = 2;
@@ -185,13 +474,13 @@ inline void CSTBS::clear_orgid() {
   orgid_ = 0;
 }
 inline ::google::protobuf::int32 CSTBS::orgid() const {
-  // @@protoc_insertion_point(field_get:CA.CSTBS.orgID)
+  // @@protoc_insertion_point(field_get:CSV.CSTBS.orgID)
   return orgid_;
 }
 inline void CSTBS::set_orgid(::google::protobuf::int32 value) {
   
   orgid_ = value;
-  // @@protoc_insertion_point(field_set:CA.CSTBS.orgID)
+  // @@protoc_insertion_point(field_set:CSV.CSTBS.orgID)
 }
 
 // optional string curveID = 3;
@@ -199,32 +488,32 @@ inline void CSTBS::clear_curveid() {
   curveid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline const ::std::string& CSTBS::curveid() const {
-  // @@protoc_insertion_point(field_get:CA.CSTBS.curveID)
+  // @@protoc_insertion_point(field_get:CSV.CSTBS.curveID)
   return curveid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void CSTBS::set_curveid(const ::std::string& value) {
   
   curveid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:CA.CSTBS.curveID)
+  // @@protoc_insertion_point(field_set:CSV.CSTBS.curveID)
 }
 inline void CSTBS::set_curveid(const char* value) {
   
   curveid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:CA.CSTBS.curveID)
+  // @@protoc_insertion_point(field_set_char:CSV.CSTBS.curveID)
 }
 inline void CSTBS::set_curveid(const char* value, size_t size) {
   
   curveid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:CA.CSTBS.curveID)
+  // @@protoc_insertion_point(field_set_pointer:CSV.CSTBS.curveID)
 }
 inline ::std::string* CSTBS::mutable_curveid() {
   
-  // @@protoc_insertion_point(field_mutable:CA.CSTBS.curveID)
+  // @@protoc_insertion_point(field_mutable:CSV.CSTBS.curveID)
   return curveid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* CSTBS::release_curveid() {
-  // @@protoc_insertion_point(field_release:CA.CSTBS.curveID)
+  // @@protoc_insertion_point(field_release:CSV.CSTBS.curveID)
   
   return curveid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -235,7 +524,7 @@ inline void CSTBS::set_allocated_curveid(::std::string* curveid) {
     
   }
   curveid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), curveid);
-  // @@protoc_insertion_point(field_set_allocated:CA.CSTBS.curveID)
+  // @@protoc_insertion_point(field_set_allocated:CSV.CSTBS.curveID)
 }
 
 // optional string hashID = 4;
@@ -243,32 +532,32 @@ inline void CSTBS::clear_hashid() {
   hashid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline const ::std::string& CSTBS::hashid() const {
-  // @@protoc_insertion_point(field_get:CA.CSTBS.hashID)
+  // @@protoc_insertion_point(field_get:CSV.CSTBS.hashID)
   return hashid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void CSTBS::set_hashid(const ::std::string& value) {
   
   hashid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:CA.CSTBS.hashID)
+  // @@protoc_insertion_point(field_set:CSV.CSTBS.hashID)
 }
 inline void CSTBS::set_hashid(const char* value) {
   
   hashid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:CA.CSTBS.hashID)
+  // @@protoc_insertion_point(field_set_char:CSV.CSTBS.hashID)
 }
 inline void CSTBS::set_hashid(const char* value, size_t size) {
   
   hashid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:CA.CSTBS.hashID)
+  // @@protoc_insertion_point(field_set_pointer:CSV.CSTBS.hashID)
 }
 inline ::std::string* CSTBS::mutable_hashid() {
   
-  // @@protoc_insertion_point(field_mutable:CA.CSTBS.hashID)
+  // @@protoc_insertion_point(field_mutable:CSV.CSTBS.hashID)
   return hashid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* CSTBS::release_hashid() {
-  // @@protoc_insertion_point(field_release:CA.CSTBS.hashID)
+  // @@protoc_insertion_point(field_release:CSV.CSTBS.hashID)
   
   return hashid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -279,7 +568,7 @@ inline void CSTBS::set_allocated_hashid(::std::string* hashid) {
     
   }
   hashid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), hashid);
-  // @@protoc_insertion_point(field_set_allocated:CA.CSTBS.hashID)
+  // @@protoc_insertion_point(field_set_allocated:CSV.CSTBS.hashID)
 }
 
 // optional int32 pubKLen = 5;
@@ -287,20 +576,406 @@ inline void CSTBS::clear_pubklen() {
   pubklen_ = 0;
 }
 inline ::google::protobuf::int32 CSTBS::pubklen() const {
-  // @@protoc_insertion_point(field_get:CA.CSTBS.pubKLen)
+  // @@protoc_insertion_point(field_get:CSV.CSTBS.pubKLen)
   return pubklen_;
 }
 inline void CSTBS::set_pubklen(::google::protobuf::int32 value) {
   
   pubklen_ = value;
-  // @@protoc_insertion_point(field_set:CA.CSTBS.pubKLen)
+  // @@protoc_insertion_point(field_set:CSV.CSTBS.pubKLen)
+}
+
+// -------------------------------------------------------------------
+
+// MCSR
+
+// optional int32 deviceID = 1;
+inline void MCSR::clear_deviceid() {
+  deviceid_ = 0;
+}
+inline ::google::protobuf::int32 MCSR::deviceid() const {
+  // @@protoc_insertion_point(field_get:CSV.MCSR.deviceID)
+  return deviceid_;
+}
+inline void MCSR::set_deviceid(::google::protobuf::int32 value) {
+  
+  deviceid_ = value;
+  // @@protoc_insertion_point(field_set:CSV.MCSR.deviceID)
+}
+
+// optional int32 orgID = 2;
+inline void MCSR::clear_orgid() {
+  orgid_ = 0;
+}
+inline ::google::protobuf::int32 MCSR::orgid() const {
+  // @@protoc_insertion_point(field_get:CSV.MCSR.orgID)
+  return orgid_;
+}
+inline void MCSR::set_orgid(::google::protobuf::int32 value) {
+  
+  orgid_ = value;
+  // @@protoc_insertion_point(field_set:CSV.MCSR.orgID)
+}
+
+// optional string curveID = 3;
+inline void MCSR::clear_curveid() {
+  curveid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& MCSR::curveid() const {
+  // @@protoc_insertion_point(field_get:CSV.MCSR.curveID)
+  return curveid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void MCSR::set_curveid(const ::std::string& value) {
+  
+  curveid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:CSV.MCSR.curveID)
+}
+inline void MCSR::set_curveid(const char* value) {
+  
+  curveid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:CSV.MCSR.curveID)
+}
+inline void MCSR::set_curveid(const char* value, size_t size) {
+  
+  curveid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:CSV.MCSR.curveID)
+}
+inline ::std::string* MCSR::mutable_curveid() {
+  
+  // @@protoc_insertion_point(field_mutable:CSV.MCSR.curveID)
+  return curveid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* MCSR::release_curveid() {
+  // @@protoc_insertion_point(field_release:CSV.MCSR.curveID)
+  
+  return curveid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void MCSR::set_allocated_curveid(::std::string* curveid) {
+  if (curveid != NULL) {
+    
+  } else {
+    
+  }
+  curveid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), curveid);
+  // @@protoc_insertion_point(field_set_allocated:CSV.MCSR.curveID)
+}
+
+// optional string hashID = 4;
+inline void MCSR::clear_hashid() {
+  hashid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& MCSR::hashid() const {
+  // @@protoc_insertion_point(field_get:CSV.MCSR.hashID)
+  return hashid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void MCSR::set_hashid(const ::std::string& value) {
+  
+  hashid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:CSV.MCSR.hashID)
+}
+inline void MCSR::set_hashid(const char* value) {
+  
+  hashid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:CSV.MCSR.hashID)
+}
+inline void MCSR::set_hashid(const char* value, size_t size) {
+  
+  hashid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:CSV.MCSR.hashID)
+}
+inline ::std::string* MCSR::mutable_hashid() {
+  
+  // @@protoc_insertion_point(field_mutable:CSV.MCSR.hashID)
+  return hashid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* MCSR::release_hashid() {
+  // @@protoc_insertion_point(field_release:CSV.MCSR.hashID)
+  
+  return hashid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void MCSR::set_allocated_hashid(::std::string* hashid) {
+  if (hashid != NULL) {
+    
+  } else {
+    
+  }
+  hashid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), hashid);
+  // @@protoc_insertion_point(field_set_allocated:CSV.MCSR.hashID)
+}
+
+// optional int32 pubKLen = 5;
+inline void MCSR::clear_pubklen() {
+  pubklen_ = 0;
+}
+inline ::google::protobuf::int32 MCSR::pubklen() const {
+  // @@protoc_insertion_point(field_get:CSV.MCSR.pubKLen)
+  return pubklen_;
+}
+inline void MCSR::set_pubklen(::google::protobuf::int32 value) {
+  
+  pubklen_ = value;
+  // @@protoc_insertion_point(field_set:CSV.MCSR.pubKLen)
+}
+
+// optional int32 sigL = 6;
+inline void MCSR::clear_sigl() {
+  sigl_ = 0;
+}
+inline ::google::protobuf::int32 MCSR::sigl() const {
+  // @@protoc_insertion_point(field_get:CSV.MCSR.sigL)
+  return sigl_;
+}
+inline void MCSR::set_sigl(::google::protobuf::int32 value) {
+  
+  sigl_ = value;
+  // @@protoc_insertion_point(field_set:CSV.MCSR.sigL)
+}
+
+// optional bytes sig = 7;
+inline void MCSR::clear_sig() {
+  sig_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& MCSR::sig() const {
+  // @@protoc_insertion_point(field_get:CSV.MCSR.sig)
+  return sig_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void MCSR::set_sig(const ::std::string& value) {
+  
+  sig_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:CSV.MCSR.sig)
+}
+inline void MCSR::set_sig(const char* value) {
+  
+  sig_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:CSV.MCSR.sig)
+}
+inline void MCSR::set_sig(const void* value, size_t size) {
+  
+  sig_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:CSV.MCSR.sig)
+}
+inline ::std::string* MCSR::mutable_sig() {
+  
+  // @@protoc_insertion_point(field_mutable:CSV.MCSR.sig)
+  return sig_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* MCSR::release_sig() {
+  // @@protoc_insertion_point(field_release:CSV.MCSR.sig)
+  
+  return sig_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void MCSR::set_allocated_sig(::std::string* sig) {
+  if (sig != NULL) {
+    
+  } else {
+    
+  }
+  sig_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), sig);
+  // @@protoc_insertion_point(field_set_allocated:CSV.MCSR.sig)
+}
+
+// -------------------------------------------------------------------
+
+// CA
+
+// optional int32 deviceID = 1;
+inline void CA::clear_deviceid() {
+  deviceid_ = 0;
+}
+inline ::google::protobuf::int32 CA::deviceid() const {
+  // @@protoc_insertion_point(field_get:CSV.CA.deviceID)
+  return deviceid_;
+}
+inline void CA::set_deviceid(::google::protobuf::int32 value) {
+  
+  deviceid_ = value;
+  // @@protoc_insertion_point(field_set:CSV.CA.deviceID)
+}
+
+// optional int32 orgID = 2;
+inline void CA::clear_orgid() {
+  orgid_ = 0;
+}
+inline ::google::protobuf::int32 CA::orgid() const {
+  // @@protoc_insertion_point(field_get:CSV.CA.orgID)
+  return orgid_;
+}
+inline void CA::set_orgid(::google::protobuf::int32 value) {
+  
+  orgid_ = value;
+  // @@protoc_insertion_point(field_set:CSV.CA.orgID)
+}
+
+// optional string curveID = 3;
+inline void CA::clear_curveid() {
+  curveid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& CA::curveid() const {
+  // @@protoc_insertion_point(field_get:CSV.CA.curveID)
+  return curveid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void CA::set_curveid(const ::std::string& value) {
+  
+  curveid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:CSV.CA.curveID)
+}
+inline void CA::set_curveid(const char* value) {
+  
+  curveid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:CSV.CA.curveID)
+}
+inline void CA::set_curveid(const char* value, size_t size) {
+  
+  curveid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:CSV.CA.curveID)
+}
+inline ::std::string* CA::mutable_curveid() {
+  
+  // @@protoc_insertion_point(field_mutable:CSV.CA.curveID)
+  return curveid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* CA::release_curveid() {
+  // @@protoc_insertion_point(field_release:CSV.CA.curveID)
+  
+  return curveid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void CA::set_allocated_curveid(::std::string* curveid) {
+  if (curveid != NULL) {
+    
+  } else {
+    
+  }
+  curveid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), curveid);
+  // @@protoc_insertion_point(field_set_allocated:CSV.CA.curveID)
+}
+
+// optional string hashID = 4;
+inline void CA::clear_hashid() {
+  hashid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& CA::hashid() const {
+  // @@protoc_insertion_point(field_get:CSV.CA.hashID)
+  return hashid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void CA::set_hashid(const ::std::string& value) {
+  
+  hashid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:CSV.CA.hashID)
+}
+inline void CA::set_hashid(const char* value) {
+  
+  hashid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:CSV.CA.hashID)
+}
+inline void CA::set_hashid(const char* value, size_t size) {
+  
+  hashid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:CSV.CA.hashID)
+}
+inline ::std::string* CA::mutable_hashid() {
+  
+  // @@protoc_insertion_point(field_mutable:CSV.CA.hashID)
+  return hashid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* CA::release_hashid() {
+  // @@protoc_insertion_point(field_release:CSV.CA.hashID)
+  
+  return hashid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void CA::set_allocated_hashid(::std::string* hashid) {
+  if (hashid != NULL) {
+    
+  } else {
+    
+  }
+  hashid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), hashid);
+  // @@protoc_insertion_point(field_set_allocated:CSV.CA.hashID)
+}
+
+// optional int32 pubKLen = 5;
+inline void CA::clear_pubklen() {
+  pubklen_ = 0;
+}
+inline ::google::protobuf::int32 CA::pubklen() const {
+  // @@protoc_insertion_point(field_get:CSV.CA.pubKLen)
+  return pubklen_;
+}
+inline void CA::set_pubklen(::google::protobuf::int32 value) {
+  
+  pubklen_ = value;
+  // @@protoc_insertion_point(field_set:CSV.CA.pubKLen)
+}
+
+// optional int32 certSNO = 6;
+inline void CA::clear_certsno() {
+  certsno_ = 0;
+}
+inline ::google::protobuf::int32 CA::certsno() const {
+  // @@protoc_insertion_point(field_get:CSV.CA.certSNO)
+  return certsno_;
+}
+inline void CA::set_certsno(::google::protobuf::int32 value) {
+  
+  certsno_ = value;
+  // @@protoc_insertion_point(field_set:CSV.CA.certSNO)
+}
+
+// optional int32 caID = 7;
+inline void CA::clear_caid() {
+  caid_ = 0;
+}
+inline ::google::protobuf::int32 CA::caid() const {
+  // @@protoc_insertion_point(field_get:CSV.CA.caID)
+  return caid_;
+}
+inline void CA::set_caid(::google::protobuf::int32 value) {
+  
+  caid_ = value;
+  // @@protoc_insertion_point(field_set:CSV.CA.caID)
+}
+
+// optional int32 validF = 8;
+inline void CA::clear_validf() {
+  validf_ = 0;
+}
+inline ::google::protobuf::int32 CA::validf() const {
+  // @@protoc_insertion_point(field_get:CSV.CA.validF)
+  return validf_;
+}
+inline void CA::set_validf(::google::protobuf::int32 value) {
+  
+  validf_ = value;
+  // @@protoc_insertion_point(field_set:CSV.CA.validF)
+}
+
+// optional int32 validFor = 9;
+inline void CA::clear_validfor() {
+  validfor_ = 0;
+}
+inline ::google::protobuf::int32 CA::validfor() const {
+  // @@protoc_insertion_point(field_get:CSV.CA.validFor)
+  return validfor_;
+}
+inline void CA::set_validfor(::google::protobuf::int32 value) {
+  
+  validfor_ = value;
+  // @@protoc_insertion_point(field_set:CSV.CA.validFor)
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace CA
+}  // namespace CSV
 
 // @@protoc_insertion_point(global_scope)
 

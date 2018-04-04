@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package CA;
+package CSV;
 
 message CSTBS{
 	int32 deviceID = 1;
@@ -9,3 +9,26 @@ message CSTBS{
     string hashID = 4;
     int32 pubKLen = 5;
 }	
+
+message MCSR{
+	int32 deviceID = 1;
+	int32 orgID = 2;
+	string curveID = 3;
+    string hashID = 4;
+    int32 pubKLen = 5;
+    int32 sigL = 6;
+    bytes sig = 7;
+}	
+
+message CA{
+	int32 deviceID = 1;
+	int32 orgID = 2;
+	string curveID = 3;
+    string hashID = 4;
+    int32 pubKLen = 5;
+    int32 certSNO = 6;
+    int32 caID = 7;
+    int32 validF = 8;
+    int32 validFor = 9;
+}	
+
