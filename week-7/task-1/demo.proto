@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package CSV;
+
+message CSTBS{
+	required uint64 deviceID = 1;
+	required uint64 orgID = 2;
+	required string curveID = 3;
+    required string hashID = 4;
+    required int32 pubKLen = 5;
+}	

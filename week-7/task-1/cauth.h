@@ -13,6 +13,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <cctype>
+#include <google/protobuf/util/time_util.h>
 
 #include <openssl/pem.h>
 #include <openssl/evp.h>

@@ -1,34 +1,34 @@
-syntax = "proto3";
+syntax = "proto2";
 
 package CSV;
 
 message CSTBS{
-	int32 deviceID = 1;
-	int32 orgID = 2;
-	string curveID = 3;
-    string hashID = 4;
-    int32 pubKLen = 5;
+	required uint64 deviceID = 1;
+	required uint64 orgID = 2;
+	required string curveID = 3;
+    required string hashID = 4;
+    required int32 pubKLen = 5;
 }	
 
 message MCSR{
-	int32 deviceID = 1;
-	int32 orgID = 2;
-	string curveID = 3;
-    string hashID = 4;
-    int32 pubKLen = 5;
-    int32 sigL = 6;
-    bytes sig = 7;
+	required uint64 deviceID = 1;
+	required uint64 orgID = 2;
+	required string curveID = 3;
+    required string hashID = 4;
+    required int32 pubKLen = 5;
+    required int32 sigL = 6;
+    required bytes sig = 7;
 }	
 
 message CA{
-	int32 deviceID = 1;
-	int32 orgID = 2;
-	string curveID = 3;
-    string hashID = 4;
-    int32 pubKLen = 5;
-    int32 certSNO = 6;
-    int32 caID = 7;
-    int32 validF = 8;
-    int32 validFor = 9;
+	required uint64 deviceID = 1;
+	required uint64 orgID = 2;
+	required string curveID = 3;
+    required string hashID = 4;
+    required int32 pubKLen = 5;
+    required uint64 certSNO = 6;
+    required uint64 caID = 7;
+    required int32 validF = 8;
+    required int32 validFor = 9;
 }	
 

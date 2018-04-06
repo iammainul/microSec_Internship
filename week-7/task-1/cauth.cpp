@@ -2,7 +2,7 @@
 #include "csrtbs.pb.h"
 
 using namespace std;
-
+using google::protobuf::util::TimeUtil;
 
 
 int main(){
@@ -17,7 +17,7 @@ int main(){
     int ret;
     size_t sLen = 0;
     byte* sig = NULL;
-    char hn[] = "SHA256";
+    char h[] = "SHA256";
     char ecctype[] = "SEPC256K1";
     unsigned int ar[3];
     FILE *fp;
@@ -52,34 +52,37 @@ int main(){
 
     pubKLen = EVP_PKEY_bits(PUBKey);
 
-    CSV::CSTBS *cstbs;
-    CSV::MCSR *mcsr;
-    CSV::CA *ca;
+
+    CSV::CSTBS cstbs;
+    CSV::MCSR mcsr;
+    CSV::CA ca;
+
+
 
 
     //Polpulating the CSRToBeSigned Structure
     //Generating ID's
-    unsigned int d_id, o_id;
-    d_id = (uint32_t)rand();
-    cstbs->set_deviceid(d_id);
-    mcsr->set_deviceid(d_id);
-    ca->set_deviceid(d_id);
-    o_id = (uint32_t)rand();
-    cstbs->set_orgid(o_id);
-    mcsr->set_orgid(o_id);
-    ca->set_orgid(o_id);
+    uint64_t d_id, o_id;
+    d_id = (uint64_t)rand();
+    cstbs.set_deviceid(d_id);
+    mcsr.set_deviceid(d_id);
+    ca.set_deviceid(d_id);
+    o_id = (uint64_t)rand();
+    cstbs.set_orgid(o_id);
+    mcsr.set_orgid(o_id);
+    ca.set_orgid(o_id);
 
 
     //Storing the ID's
-    cstbs->set_curveid(ecctype);
-    mcsr->set_curveid(ecctype);
-    ca->set_curveid(ecctype);
-    cstbs->set_hashid(hn);
-    mcsr->set_hashid(hn);
-    ca->set_hashid(hn);
-    cstbs->set_pubklen(pubKLen);
-    mcsr->set_pubklen(pubKLen);
-    ca->set_pubklen(pubKLen);
+    cstbs.set_curveid(ecctype);
+    mcsr.set_curveid(ecctype);
+    ca.set_curveid(ecctype);
+    cstbs.set_hashid(h);
+    mcsr.set_hashid(h);
+    ca.set_hashid(h);
+    cstbs.set_pubklen(pubKLen);
+    mcsr.set_pubklen(pubKLen);
+    ca.set_pubklen(pubKLen);
 
     cstbs.SerializeToOstream(&fo);
 
@@ -105,7 +108,7 @@ int main(){
     memcpy(s, (char*)&ar, sizeof(ar));
 
     unsigned char *m = (unsigned char*)ecctype;
-    unsigned char *n = (unsigned char*)hn;
+    unsigned char *n = (unsigned char*)h;
 
     byte *buff = NULL;
     stcat(m, n);
@@ -126,12 +129,12 @@ int main(){
     }
 
     sig1 = (char *)sig;
-    mcsr->set_sigl(sLen);
-    mcsr->set_sig(sig1);
+    mcsr.set_sigl(sLen);
+    mcsr.set_sig(sig1);
    
 
     //writting to a fp
- 	mcsr.SerializeToOstream(&f2);
+ 	mcsr.SerializeToOstream(&f1);
 
  	fp = fopen("mcsr.der", "a");
     if(fp == NULL){
@@ -155,14 +158,14 @@ int main(){
     time_t validFor;
     validFor = (validF + 31536000);
 
-    ca->set_validf(validF);
-    ca->set_validfor(validFor);
+    ca.set_validf(validF);
+    ca.set_validfor(validFor);
 
-    int ca_id, ca_sno;
-    ca_id = (uint32_t)rand();
-    ca_sno = (uint32_t)rand();
-    ca->set_certsno(ca_sno);
-    ca->set_caid(ca_id);
+    uint64_t ca_id, ca_sno;
+    ca_id = (uint64_t)rand();
+    ca_sno = (uint64_t)rand();
+    ca.set_certsno(ca_sno);
+    ca.set_caid(ca_id);
 
         //writting to a fp
 	ca.SerializeToOstream(&f2);
