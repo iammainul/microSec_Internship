@@ -1,8 +1,9 @@
 #include "cauth.h"
-#include "csrtbs.pb.h"
+#include "csr.pb.h"
+
 
 using namespace std;
-using google::protobuf::util::TimeUtil;
+
 
 
 int main(){
@@ -21,22 +22,20 @@ int main(){
     char ecctype[] = "SEPC256K1";
     unsigned int ar[3];
     FILE *fp;
-    char *sig1;
+   	const char *sig1;
     fstream fo("./csbts.der",ios::out | ios::trunc | ios::binary);
     fstream f1("./mcsr.der",ios::out | ios::trunc | ios::binary);
-    fstream f2("./ca.der",ios::out | ios::trunc | ios::binary);
+    fstream f2(".///ca.der",ios::out | ios::trunc | ios::binary);
 
+    CSR::CSTBS cstbs;
+    CSR::MCSR mcsr;
+    CSR::CA ca;
 
 
 
 
 
 	    //Reading Keys
-    fp = fopen("mypubkey.pem", "r");
-
-    PUBKey =  PEM_read_PUBKEY(fp, P_PUBKEY, NULL, NULL);
-
-    fclose(fp);
     
     fp = fopen("mypubkey.pem", "r");
 
@@ -52,10 +51,9 @@ int main(){
 
     pubKLen = EVP_PKEY_bits(PUBKey);
 
+    printf("%d\n", pubKLen );
 
-    CSV::CSTBS cstbs;
-    CSV::MCSR mcsr;
-    CSV::CA ca;
+
 
 
 
@@ -64,10 +62,12 @@ int main(){
     //Generating ID's
     uint64_t d_id, o_id;
     d_id = (uint64_t)rand();
+    printf("%ld\n", d_id);
     cstbs.set_deviceid(d_id);
     mcsr.set_deviceid(d_id);
     ca.set_deviceid(d_id);
     o_id = (uint64_t)rand();
+    printf("%ld\n", o_id);
     cstbs.set_orgid(o_id);
     mcsr.set_orgid(o_id);
     ca.set_orgid(o_id);
@@ -86,7 +86,7 @@ int main(){
 
     cstbs.SerializeToOstream(&fo);
 
-
+    fo.close();
 
 
     fp = fopen("cstbs.der", "a");
@@ -95,7 +95,7 @@ int main(){
     	exit(1);
     }
 
-    fwrite(&PUBKey, sizeof(PUBKey), 1, fp);
+    fwrite(&PUBKey, 1, sizeof(PUBKey), fp);
     fclose(fp);
 
     //Polpulating the MiniCertSignRequest Structure
@@ -119,24 +119,27 @@ int main(){
         //creating the signature
     ret = sign_it(buff, sizeof(buff), &sig, &sLen, PRKEY);
 
-    assert(ret == 0);
+    
     if(ret == 0){
-        printf ("Signature Creation Success");
+        printf ("Signature Creation Success MCSR\n");
     }
     else{
         printf("Fialed to create the signature\n");
         exit (1);
     }
 
-    sig1 = (char *)sig;
-    mcsr.set_sigl(sLen);
+    printf("%zu = sig lenth \n", sLen);
+    sig1 = (const char *)sig;
+    mcsr.set_sigl((long int)sLen);
     mcsr.set_sig(sig1);
    
 
     //writting to a fp
  	mcsr.SerializeToOstream(&f1);
+ 	f1.close();
 
- 	fp = fopen("mcsr.der", "a");
+
+   	fp = fopen("mcsr.der", "a");
     if(fp == NULL){
     	printf("Cannot Open mcsr.der\n");
     	exit(1);
@@ -149,7 +152,7 @@ int main(){
     ret = verify_it(buff, sizeof(buff), sig, sLen, PUBKey);
     
     if(ret == 0) {
-        printf("Verified signature\n");
+        printf("Verified signature before CA\n");
     } else {
         printf("Failed to verify signature, return code %d\n", ret);
     }
@@ -158,8 +161,8 @@ int main(){
     time_t validFor;
     validFor = (validF + 31536000);
 
-    ca.set_validf(validF);
-    ca.set_validfor(validFor);
+    ca.set_validf((long long int)validF);
+    ca.set_validfor((long long int)validFor);
 
     uint64_t ca_id, ca_sno;
     ca_id = (uint64_t)rand();
@@ -169,17 +172,18 @@ int main(){
 
         //writting to a fp
 	ca.SerializeToOstream(&f2);
+	f2.close();
 
-    fp = fopen("ca.der", "a");
+    fp = fopen("//ca.der", "a");
     if(fp == NULL){
-    	printf("Cannot Open ca.der\n");
+    	printf("Cannot Open //ca.der\n");
     	exit(1);
     }
 
     fwrite(&PUBKey, sizeof(PUBKey), 1, fp);
     fclose(fp);
 
-
+    
     if(sig)
         OPENSSL_free(sig);
     if(PUBKey)

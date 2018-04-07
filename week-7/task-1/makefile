@@ -9,18 +9,18 @@ TARGETS = main_microcsr main_microcert
 
 
 .PHONY: all
-all: protoc_middleman csrtbs.pb.o cauth
+all: protoc_middleman csr.pb.o cauth
 	rm -f *.o *.gch ../*.o
 
-cauth: cauth.o csrtbs.pb.o
+cauth: cauth.o csr.pb.o
 	$(CXX) $(CXXFLAGS) $^ $(LDLIBS) -o $@
 
 cauth.o: cauth.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-csrtbs.pb.o: csrtbs.pb.cc
+csr.pb.o: csr.pb.cc
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 .PHONY: protoc_middleman
-protoc_middleman: csrtbs.proto
-	protoc $$PROTO_PATH --cpp_out=. csrtbs.proto
+protoc_middleman: csr.proto
+	protoc $$PROTO_PATH --cpp_out=. csr.proto
