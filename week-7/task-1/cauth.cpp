@@ -148,6 +148,8 @@ int main(){
     fwrite(&PUBKey, sizeof(PUBKey), 1, fp);
     fclose(fp);
 
+    printf("created mcsr.der\n");
+
     //verifying the signature
     ret = verify_it(buff, sizeof(buff), sig, sLen, PUBKey);
     
@@ -161,6 +163,8 @@ int main(){
     time_t validFor;
     validFor = (validF + 31536000);
 
+    printf("Time Period Done\n");
+
     ca.set_validf((long long int)validF);
     ca.set_validfor((long long int)validFor);
 
@@ -170,10 +174,12 @@ int main(){
     ca.set_certsno(ca_sno);
     ca.set_caid(ca_id);
 
+    printf("CA filled Done\n");
         //writting to a fp
 	ca.SerializeToOstream(&f2);
 	f2.close();
 
+    printf("created ca.der with STOS\n");
     fp = fopen("//ca.der", "a");
     if(fp == NULL){
     	printf("Cannot Open //ca.der\n");
@@ -183,6 +189,7 @@ int main(){
     fwrite(&PUBKey, sizeof(PUBKey), 1, fp);
     fclose(fp);
 
+    printf("created mcsr.der\n");
     
     if(sig)
         OPENSSL_free(sig);
@@ -192,7 +199,7 @@ int main(){
     if(PRKEY)
         EVP_PKEY_free(PRKEY);
 
-
+    printf("done\n");
 
 
     return 0;
