@@ -25,7 +25,7 @@ int main(){
    	const char *sig1;
     fstream fo("./csbts.der",ios::out | ios::trunc | ios::binary);
     fstream f1("./mcsr.der",ios::out | ios::trunc | ios::binary);
-    fstream f2(".///ca.der",ios::out | ios::trunc | ios::binary);
+    fstream f2("./ca.der",ios::out | ios::trunc | ios::binary);
 
     CSR::CSTBS cstbs;
     CSR::MCSR mcsr;
@@ -176,20 +176,20 @@ int main(){
 
     printf("CA filled Done\n");
         //writting to a fp
-	ca.SerializeToOstream(&f2);
+	ca.SerializeToOstream(&f2); //This line goves the error! without this line everythng runs. Did you changed anything?
 	f2.close();
 
     printf("created ca.der with STOS\n");
-    fp = fopen("//ca.der", "a");
+    fp = fopen("ca.der", "a");
     if(fp == NULL){
-    	printf("Cannot Open //ca.der\n");
+    	printf("Cannot Open ca.der\n");
     	exit(1);
     }
 
     fwrite(&PUBKey, sizeof(PUBKey), 1, fp);
     fclose(fp);
 
-    printf("created mcsr.der\n");
+    printf("created ca.der\n");
     
     if(sig)
         OPENSSL_free(sig);
