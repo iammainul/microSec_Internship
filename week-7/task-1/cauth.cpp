@@ -23,7 +23,7 @@ int main(){
     unsigned int ar[3];
     FILE *fp;
    	const char *sig1;
-    fstream fo("./csbts.der",ios::out | ios::trunc | ios::binary);
+    fstream fo("./cstbs.der",ios::out | ios::trunc | ios::binary);
     fstream f1("./mcsr.der",ios::out | ios::trunc | ios::binary);
     fstream f2("./ca.der",ios::out | ios::trunc | ios::binary);
 
